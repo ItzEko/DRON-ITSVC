@@ -1,62 +1,61 @@
-// Simulamos los datos que normalmente vendrían de un archivo JSON externo o de una API
-const datos = {
-  "datos": [
-    {
-      "id_arbol": "ARBOL_001",
-      "temp": -143.88,
-      "lat": 20.46879,
-      "lon": -97.71613,
-      "date": "2025-05-05",
-      "time": "12:30:45",
-      "altura": -1052562
-    },
-    {
-      "id_arbol": "ARBOL_002",
-      "temp": -143.88,
-      "lat": 20.46878,
-      "lon": -97.71615,
-      "date": "2025-05-05",
-      "time": "12:30:45",
-      "altura": -1052889
-    },
-    {
-      "id_arbol": "ARBOL_001",
-      "temp": -143.88,
-      "lat": 20.46875,
-      "lon": -97.71619,
-      "date": "2025-05-05",
-      "time": "12:30:45",
-      "altura": -1053275
+document.addEventListener("DOMContentLoaded", () => {
+  const inputArchivo = document.getElementById("archivo-json");
+  const contenedor = document.getElementById("contenedor-arboles");
+
+  inputArchivo.addEventListener("change", (e) => {
+    const archivo = e.target.files[0];
+
+    if (archivo) {
+      const lector = new FileReader();
+
+      lector.onload = function (evento) {
+        try {
+          const contenido = JSON.parse(evento.target.result);
+          mostrarCards(contenido.datos);
+        } catch (error) {
+          alert("El archivo no contiene un JSON válido.");
+        }
+      };
+
+      lector.readAsText(archivo);
     }
-  ]
-};
+  });
 
-// Obtener el contenedor desde el DOM
-const contenedor = document.getElementById("contenedor-cards");
+  function mostrarCards(datos) {
+    contenedor.innerHTML = ""; 
+    datos.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "col-md-6 mb-4";
 
-// Agrupar por árbol y conservar solo el último dato (última posición del array)
-const agrupados = {};
-datos.datos.forEach((dato) => {
-  agrupados[dato.id_arbol] = dato; // se sobrescriben los repetidos, quedando el último
-});
+      card.innerHTML = `
+        <div class="card shadow border-success">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Árbol ID: ${item.id_arbol}</h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <h6 class="text-muted">Altura</h6>
+                <p class="fs-5">${item.altura} m</p>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-muted">Localización GPS</h6>
+                <p class="fs-5">${item.lat}° N, ${item.lon}° W</p>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-muted">Fecha</h6>
+                <p class="fs-5">${item.date}</p>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-muted">Hora</h6>
+                <p class="fs-5">${item.time}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
 
-// Crear las tarjetas dinámicamente
-Object.values(agrupados).forEach(dato => {
-  const card = document.createElement("div");
-  card.className = "col-md-4";
-
-  card.innerHTML = `
-    <div class="card shadow-sm mb-4">
-      <div class="card-header bg-success text-white">
-        <h5 class="mb-0">${dato.id_arbol}</h5>
-      </div>
-      <div class="card-body">
-        <p><strong>Altura:</strong> ${dato.altura} m</p>
-        <p><strong>GPS:</strong> ${dato.lat}, ${dato.lon}</p>
-        <p><strong>Fecha:</strong> ${dato.date}</p>
-        <p><strong>Hora:</strong> ${dato.time}</p>
-      </div>
-    </div>
-  `;
-  contenedor.appendChild(card);
+      contenedor.appendChild(card);
+    });
+  }
 });
