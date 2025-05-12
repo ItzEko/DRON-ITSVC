@@ -1,7 +1,14 @@
 # DRON-ITSVC
+<<<<<<< HEAD
 
 Este proyecto es una interfaz web diseñada para recibir, procesar y mostrar información proveniente de un medidor de pinos. Los datos incluyen altura del árbol, ubicación mediante coordenadas, fecha, hora e ID único del árbol. Toda la información se recibe en formato JSON y se visualiza mediante una interfaz construida con HTML, CSS y JavaScript.
 
+=======
+<<<<<<< HEAD
+Proyecto de Dron medidor de pinos para el Instituto Tecnologico Superior de Venustiano Carranza, se encuentra aqui el diseño web para la muestra de los valores arrojados del  modulo creado con sensores
+-El modelo del proyecto es una arquitectura por capas donde se dividira en responsabilidades conforme a el JSON proporcionado por el modulo
+=======
+>>>>>>> 838bc4ea7342c2d58c386fb59268d481bc45b2e0
 ---
 
 ## 📁 Estructura del Proyecto
@@ -87,4 +94,9 @@ Este proyecto es una interfaz web diseñada para recibir, procesar y mostrar inf
 
 Proyecto desarrollado por el equipo de desarrollo de **ITSVC Alumnos: Teresa Itzel Guzman Tellez y Angel Manuel Castillo Larios de 8vo Semestre**.
 
+<<<<<<< HEAD
 ---
+=======
+---
+>>>>>>> 45c5f0a (Creación de archivos y estructura de proyecto/ Creación de readme con documentación MARKDOWN)
+>>>>>>> 838bc4ea7342c2d58c386fb59268d481bc45b2e0
