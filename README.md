@@ -5,7 +5,7 @@ Proyecto desarrollado para el Instituto Tecnológico Superior de Venustiano Carr
 
 Este sistema permite subir, almacenar y visualizar los datos en formato JSON generados por el dron.
 
-## 🚀 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **HTML5** – Para la estructura de la interfaz de usuario.
 - **CSS3** – Para los estilos visuales personalizados.
@@ -18,7 +18,7 @@ Este sistema permite subir, almacenar y visualizar los datos en formato JSON gen
 
 ---
 
-## 🗂 Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 /DRON-ITSVC/
@@ -45,7 +45,7 @@ Este sistema permite subir, almacenar y visualizar los datos en formato JSON gen
 
 ---
 
-## ✅ Funcionalidades implementadas
+## Funcionalidades implementadas
 
 - Subida de archivos JSON generados por el módulo del dron.
 - Lectura y renderización dinámica de los datos en la interfaz.
@@ -55,7 +55,7 @@ Este sistema permite subir, almacenar y visualizar los datos en formato JSON gen
 
 ---
 
-## 🔄 Flujo de trabajo y colaboración
+## Flujo de trabajo y colaboración
 
 - Uso de ramas para el desarrollo de nuevas funcionalidades:
   ```bash
@@ -72,7 +72,7 @@ Este sistema permite subir, almacenar y visualizar los datos en formato JSON gen
 
 ---
 
-## 👩‍💻 Autoría
+## Autoría
 
 Desarrollado por:
 - Teresa Itzel Guzmán Téllez
