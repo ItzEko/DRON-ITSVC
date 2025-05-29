@@ -1,8 +1,6 @@
 <?php
-$archivos = glob(__DIR__ . '/../data/*.json'); // asegurarte que guardas con .json
-
+$archivos = glob(__DIR__ . '/../data/*.json'); 
 $dataTotal = [];
-
 foreach ($archivos as $archivo) {
     $contenido = file_get_contents($archivo);
     $json = json_decode($contenido, true);

@@ -1,92 +1,82 @@
+
 # DRON-ITSVC
-<<<<<<< HEAD
-Proyecto de Dron medidor de pinos para el Instituto Tecnologico Superior de Venustiano Carranza, se encuentra aqui el diseño web para la muestra de los valores arrojados del  modulo creado con sensores
--El modelo del proyecto es una arquitectura por capas donde se dividira en responsabilidades conforme a el JSON proporcionado por el modulo
-=======
+
+Proyecto desarrollado para el Instituto Tecnológico Superior de Venustiano Carranza que permite visualizar los datos recolectados por un dron con sensores en pinos.
+
+Este sistema permite subir, almacenar y visualizar los datos en formato JSON generados por el dron.
+
+## 🚀 Tecnologías utilizadas
+
+- **HTML5** – Para la estructura de la interfaz de usuario.
+- **CSS3** – Para los estilos visuales personalizados.
+- **JavaScript (Vanilla)** – Para la lógica, carga y renderización dinámica de datos.
+- **PHP** – Para el backend y manejo de archivos.
+- **JSON** – Para estructurar los datos recolectados por el dron.
+- **Git & GitHub** – Control de versiones y trabajo colaborativo.
+- **XAMPP** – Para montar un servidor local.
+- **Git Bash** – Terminal para la gestión de versiones.
+
 ---
 
-## 📁 Estructura del Proyecto
+## 🗂 Estructura del proyecto
 
 ```
-/medidor-pinos/
+/DRON-ITSVC/
 │
-├── index.html                 # Página principal de la aplicación
+├── index.html                 # Página principal
 │
-├── /assets/                  # Archivos estáticos
+├── /assets/                  # Recursos estáticos
 │   ├── /css/
-│   │   └── styles.css        # Estilos personalizados
+│   │   └── styles.css
 │   ├── /js/
-│   │   ├── main.js           # Código principal JS (inicio, eventos, lógica general)
-│   │   ├── api.js            # Funciones para obtener y procesar JSON
-│   │   └── utils.js          # Utilidades (validación, conversión de datos, etc.)
+│   │   ├── main.js
+│   │   ├── api.js
+│   │   └── utils.js
 │   └── /img/
-│       └── (imágenes si se utilizan)
 │
-├── /data/
-│   └── sample.json           # Datos de muestra proporcionados por el medidor
+├── /backend/                 # Scripts PHP
+│   ├── guardar-archivos.php
+│   └── leer-archivos.php
 │
-├── /components/
-│   └── treeCard.html         # Fragmentos HTML reutilizables (por ejemplo, tarjetas de árboles)
+├── /data/                    # Carpeta donde se almacenan los archivos subidos
 │
-└── /docs/
-    └── README.md             # Documentación del proyecto
+└── README.md                 # Documentación del proyecto
 ```
 
 ---
 
-## Cómo clonar el proyecto la parte del frontend
+## ✅ Funcionalidades implementadas
 
-1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/medidor-pinos.git
-   cd medidor-pinos
-   ```
-
-2. Abre el archivo `index.html` con tu navegador web.
-
-> Este proyecto no requiere servidor backend, pero puedes usar extensiones como "Live Server" en VSCode o servidores locales como `http-server` para mejor experiencia de desarrollo.
+- Subida de archivos JSON generados por el módulo del dron.
+- Lectura y renderización dinámica de los datos en la interfaz.
+- Almacenamiento automático con nombre basado en la fecha del primer dato.
+- Validación de archivos y errores de subida.
+- Arquitectura por capas con separación de responsabilidades.
 
 ---
 
-##  Tecnologías utilizadas
+## 🔄 Flujo de trabajo y colaboración
 
-- **HTML5** – Estructura semántica del sitio
-- **CSS3** – Estilos visuales personalizados
-- **JavaScript (Vanilla)** – Lógica, carga de datos y renderizado dinámico
-- **JSON** – Formato estructurado para los datos del medidor
-
----
-
-##  Funcionalidades
-
-- Carga y visualización de información de árboles en tiempo real desde un archivo JSON
-- Componentes reutilizables para la presentación (ej. tarjetas de árbol)
-- Interfaz modular y organizada
-- Preparado para trabajar con ramas y colaboraciones en equipo
-
----
-
-## Buenas prácticas y flujo de trabajo en equipo
-
-- Trabaja en ramas específicas para nuevas funcionalidades:
+- Uso de ramas para el desarrollo de nuevas funcionalidades:
   ```bash
-  git checkout -b feature/mi-funcionalidad
+  git checkout -b feature/nueva-funcionalidad
   ```
-- Sube tu rama al repositorio:
+- Subida de cambios:
   ```bash
-  git push -u origin feature/mi-funcionalidad
+  git add .
+  git commit -m "Descripción del cambio"
+  git push origin feature/nueva-funcionalidad
   ```
-- Al finalizar, haz un Pull Request hacia la rama `desarrollo`
-- Siempre sincronízate antes de comenzar con:
-  ```bash
-  git pull origin desarrollo
-  ```
+- Integración mediante Pull Request hacia la rama `desarrollo`.
+- Fusión final en `main` tras revisión.
 
 ---
 
-## Autoría
+## 👩‍💻 Autoría
 
-Proyecto desarrollado por el equipo de desarrollo de **ITSVC Alumnos: Teresa Itzel Guzman Tellez y Angel Manuel Castillo Larios de 8vo Semestre**.
+Desarrollado por:
+- Teresa Itzel Guzmán Téllez
+- Ángel Manuel Castillo Larios  
+Estudiantes de 8vo semestre del ITSVC.
 
 ---
->>>>>>> 45c5f0a (Creación de archivos y estructura de proyecto/ Creación de readme con documentación MARKDOWN)
