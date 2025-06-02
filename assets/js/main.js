@@ -7,12 +7,19 @@ document.getElementById("btn-preview").addEventListener("click", () => {
     Swal.fire("No hay archivo", "Selecciona un archivo para visualizarlo", "warning");
     return;
   }
-
   const lector = new FileReader();
-
   lector.onload = function (e) {
     try {
       const contenido = JSON.parse(e.target.result);
+      // fecha actual en formato YYYY-MM-DD
+      const fechaActual = new Date().toISOString().split("T")[0];
+      // Si el JSON tiene el arreglo 'datos'
+      if (Array.isArray(contenido.datos)) {
+        
+        contenido.datos.forEach(obj => obj.date = fechaActual);// Cambiar la fecha 
+      }
+      window.jsonModificado = contenido;// Guardar el contenido modificado en una variable global
+
       mostrarTarjetasDesdeJSON(contenido);
     } catch (error) {
       Swal.fire("Error", "El archivo no tiene formato JSON válido", "error");
@@ -21,7 +28,6 @@ document.getElementById("btn-preview").addEventListener("click", () => {
 
   lector.readAsText(archivo);
 });
-
 
 // === CARGAR DESDE BACKEND ===
 document.getElementById("btn-cargar").addEventListener("click", () => {
@@ -33,12 +39,20 @@ document.getElementById("btn-cargar").addEventListener("click", () => {
     });
 });
 
-
 // === GUARDAR ARCHIVO EN SERVIDOR ===
 document.getElementById("form-subir").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const formData = new FormData(this);
+  const formData = new FormData();
+
+  if (window.jsonModificado) {
+    const blob = new Blob([JSON.stringify(window.jsonModificado)], { type: "application/json" });
+    const archivo = new File([blob], "archivo_modificado.json", { type: "application/json" });
+    formData.append("archivo", archivo);
+  } else {
+    Swal.fire("Error", "Debes previsualizar antes de guardar", "warning");
+    return;
+  }
 
   fetch("backend/guardar-archivos.php", {
     method: "POST",
@@ -48,12 +62,12 @@ document.getElementById("form-subir").addEventListener("submit", function (e) {
     .then(mensaje => {
       Swal.fire("Guardado", mensaje || "Archivo guardado correctamente", "success");
       this.reset();
+      window.jsonModificado = null; // Limpiar variable
     })
     .catch(() => {
       Swal.fire("Error", "No se pudo guardar el archivo", "error");
     });
 });
-
 
 // === FUNCION GENERAL PARA MOSTRAR LAS TARJETAS ===
 function mostrarTarjetasDesdeJSON(data) {

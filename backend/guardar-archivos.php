@@ -1,21 +1,24 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
-        $contenidoJSON = file_get_contents($_FILES['archivo']['tmp_name']);
+    if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {// Verifica si se subió un archivo sin errores
+        $contenidoJSON = file_get_contents($_FILES['archivo']['tmp_name']);// Leer el contenido del archivo subido
         $datos = json_decode($contenidoJSON, true);
-        if (isset($datos['datos']) && is_array($datos['datos']) && isset($datos['datos'][0]['date'])) {
-            $fecha = $datos['datos'][0]['date'];
-            $nombreArchivo = $fecha . '.json'; 
 
+        if (isset($datos['datos']) && is_array($datos['datos'])) {
+            $fechaActual = date("Y-m-d");            
+            foreach ($datos['datos'] as &$item) {// Reemplazar todas las fechas en el array
+                $item['date'] = $fechaActual;
+            }
+            $nombreArchivo = $fechaActual . '.json';            // Guardar el nuevo JSON con la fecha actual
             $rutaDestino = __DIR__ . '/../data/' . $nombreArchivo;
 
-            if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaDestino)) {
+            if (file_put_contents($rutaDestino, json_encode($datos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE))) {//HAcer un json legible y que no se codifiquen los caracteres especiales
                 echo "Archivo guardado correctamente como: $nombreArchivo";
             } else {
-                echo " Error al mover el archivo a $rutaDestino";
+                echo "Error al guardar el archivo.";
             }
         } else {
-            echo "No se encontró la fecha en el JSON.";
+            echo "No se encontró la estructura esperada en el JSON.";
         }
     } else {
         echo "No se subió ningún archivo o hubo un error.";
